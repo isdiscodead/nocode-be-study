@@ -11,7 +11,10 @@ function TodoForm({ createTodo }) {
     setTodoInputText(e.target.value);
   }
 
-  const addTodoItem = () => {
+  const addTodoItem = (e) => {
+	  
+	  e.preventDefault(); // 새로고침 방지 
+	  
     if ( todoInputText === "" ) {
       return;
     };
@@ -25,13 +28,15 @@ function TodoForm({ createTodo }) {
   
   return (
     <FormControl w="full" p={4} display="flex">
-        <Input placeholder="할 일을 추가해보세요." mr={2} 
-          value={todoInputText}
-          onChange={handleTodoInputTextChange}
-        />
-        <Button colorScheme="blue" mr={2} onClick={addTodoItem}>
-          추가
-        </Button>
+		<form onSubmit={addTodoItem}>
+			<Input placeholder="할 일을 추가해보세요." mr={2} 
+			  value={todoInputText}
+			  onChange={handleTodoInputTextChange}
+			/>
+			<Button colorScheme="blue" mr={2} type="submit">
+			  추가
+			</Button>	  
+		</form>
     </FormControl>
   );
 }
