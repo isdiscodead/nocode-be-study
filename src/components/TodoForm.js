@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { FormControl, Input, Button } from "@chakra-ui/react";
 
 
-function TodoForm({ todoItemList, setTodoItemList }) {
+function TodoForm({ createTodo }) {
 
   const [todoInputText, setTodoInputText] = useState("");
 
@@ -16,14 +16,7 @@ function TodoForm({ todoItemList, setTodoItemList }) {
       return;
     };
 
-    setTodoItemList([
-      ...todoItemList,
-      {
-        id: new Date().getTime(),
-        text: todoInputText,
-        isDefaultChecked: false,
-      },
-    ]);
+    createTodo(todoInputText);
 
     // 추가 시 입력창 비워주기
     setTodoInputText("");

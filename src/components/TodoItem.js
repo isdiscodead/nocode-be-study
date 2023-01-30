@@ -5,13 +5,16 @@ import { DeleteIcon } from "@chakra-ui/icons"
 
 
 function TodoItem(props) {
-  // delete 기능
-  const deleteTodo = () => {
-    props.setTodoItemList(
-      // 현재 todo 제외한 나머지 todo만 필터링 
-      props.todoItemList.filter( (item) => item.id !== props.id )
-    );
-  };
+	// check
+	const handleIsDone = (e) => {
+		props.updateTodo( props.id, e.target.checked ); // checkbox의 이벤트이므로 checked 프로퍼티 사용 
+	};
+	
+	
+	  // delete 기능
+	  const deleteTodo = () => {
+		props.deleteTodo( props.id )
+	  };
 
 
   return (
@@ -19,7 +22,7 @@ function TodoItem(props) {
       _hover={{bgColor: "blue.50"}}
       justifyContent="space-between"
     >
-      <Checkbox size="lg" defaultChecked={props.isDefaultChecked}>
+      <Checkbox size="lg" defaultChecked={props.isDefaultChecked} onChange={handleIsDone}>
         {props.text}
       </Checkbox>
       <IconButton icon={<DeleteIcon/>} size="sm" ml={2} onClick={deleteTodo}/>
