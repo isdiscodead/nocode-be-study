@@ -74,7 +74,7 @@ export default function useTodo() {
 						return response.data;
 					}
 					return item;
-				});
+				})
 			);
 			
 		} catch ( error ) {
