@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const { useToast } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 
 import { base } from "./api";
 
@@ -10,6 +10,7 @@ export default function useTodo() {
 	const [todoList, setTodoList] = useState(null);
 	
 	const toast = useToast();
+	
 	
 	const getTodoList = async () => {
 		// 로딩 중임을 표시
@@ -26,6 +27,7 @@ export default function useTodo() {
 		
 		setIsLoading(false);
 	};
+	
 	
 	// text 값을 받아서 todo 추가 
 	const createTodo = async (text) => {
@@ -94,12 +96,14 @@ export default function useTodo() {
 			  return item.id !== id;
 			})
 		  );
+			
 		  toast({
 			title: "할 일이 삭제되었습니다.",
 			status: "success",
 			duration: 2000,
 			position: "bottom",
 		  });
+			
 		} catch (error) {
 		  toast({
 			title: "에러가 발생했습니다.",
